@@ -1,0 +1,44 @@
+name: Update public-news dataset
+
+on:
+  schedule:
+    - cron: "15 6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Collect the latest public-news records
+        run: python -m scripts.collect_news --mode daily --limit 100 --pause 0.5
+
+      - name: Validate the persisted dataset
+        run: python -m scripts.validate_dataset
+
+      - name: Commit a changed snapshot
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/public_coverage.csv data/collection_status.json
+          if git diff --cached --quiet; then
+            echo "No dataset changes to commit."
+          else
+            git commit -m "data: refresh daily public-news snapshot"
+            git push
+          fi

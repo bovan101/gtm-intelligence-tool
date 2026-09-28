@@ -1,0 +1,6 @@
+feedparser>=6.0,<7
+pandas>=2.0,<3
+plotly>=5.18,<7
+requests>=2.31,<3
+streamlit>=1.32,<2
+pytest>=8.0,<9
