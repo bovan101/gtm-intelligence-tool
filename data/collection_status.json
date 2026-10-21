@@ -1,15 +1,15 @@
 {
   "status": "healthy",
-  "generated_at": "2026-10-20T11:30:18.168694+00:00",
-  "last_successful_update": "2026-10-20T11:30:18.168694+00:00",
+  "generated_at": "2026-10-21T11:42:08.396652+00:00",
+  "last_successful_update": "2026-10-21T11:42:08.396652+00:00",
   "schedule": "daily",
   "provider": "Google News RSS",
   "requests_attempted": 12,
   "requests_succeeded": 12,
-  "raw_records_received": 171,
-  "validated_records_received": 90,
-  "dataset_records": 3434,
+  "raw_records_received": 136,
+  "validated_records_received": 97,
+  "dataset_records": 3461,
   "dataset_start": "2025-09-05",
-  "dataset_end": "2026-10-20",
+  "dataset_end": "2026-10-21",
   "errors": []
 }
